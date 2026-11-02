@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Papers, Please in the afterlife. A first-person detective game about judging the dead: Hell, Heaven or Purgatory.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Final Stamp">
+<meta property="og:description" content="Papers, Please in the afterlife. A first-person detective game about judging the dead: Hell, Heaven or Purgatory.">
+<meta property="og:url" content="https://pitch.astrainteractivegames.com/">
+<meta property="og:image" content="https://pitch.astrainteractivegames.com/media/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="media/logo.png">
+<title>The Final Stamp</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Spectral:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap">
+<style>
+/* Layout: a case file from the Chancellery. Narrow typewriter label column on the left, the case on the right; GIFs are the exhibits. One dark look, by choice. */
+:root {
+  --ink: #13110f;        /* the office at night */
+  --ink-2: #1c1915;      /* desk leather, raised bands */
+  --line: #3a332b;
+  --paper: #ede3d1;      /* headings, form paper */
+  --paper-dim: #b9ae9c;  /* running text */
+  --muted: #8f8577;      /* captions, sources */
+  --ember: #e08a3c;      /* the Hell window, the stamp */
+  --sky: #9cc7e6;        /* the Heaven window */
+  --f-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --f-body: 'Spectral', Georgia, 'Times New Roman', serif;
+  --f-type: 'Special Elite', 'Courier New', monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ink);
+  color: var(--paper-dim);
+  font-family: var(--f-body);
+  font-size: 19px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { color: var(--paper); font-weight: 400; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; }
+h3 { font-family: var(--f-display); font-size: 28px; line-height: 1.1; letter-spacing: 0.02em; text-transform: uppercase; }
+p { margin: 0; max-width: 62ch; }
+.label {
+  font-family: var(--f-type);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.label b { color: var(--ember); font-weight: 400; }
+a { color: var(--paper); text-decoration-color: var(--ember); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  background: var(--ink) url('media/cover.jpg') right center / cover no-repeat;
+  border-bottom: 1px solid var(--line);
+}
+.hero .wrap { padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 96px); position: relative; }
+.hero-inner { max-width: 560px; display: flex; flex-direction: column; gap: 28px; }
+.logo { width: min(420px, 78vw); height: auto; display: block; }
+.thesis { font-family: var(--f-display); font-size: clamp(30px, 4vw, 44px); line-height: 1.1; color: var(--paper); text-transform: uppercase; letter-spacing: 0.01em; }
+.hero p.lede { font-size: 21px; color: var(--paper-dim); }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 0; margin: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts .v { color: var(--paper); font-size: 18px; }
+.stamp {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right, 0px));
+  bottom: 40px;
+  font-family: var(--f-type);
+  font-size: 18px;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ember);
+  border: 3px double var(--ember);
+  border-radius: 6px;
+  padding: 10px 18px;
+  transform: rotate(-8deg);
+  background: rgba(19, 17, 15, 0.55);
+  animation: thump 700ms cubic-bezier(.2, .9, .3, 1.2) 400ms both;
+}
+@keyframes thump {
+  from { transform: rotate(-8deg) scale(1.6); opacity: 0.35; }
+  to { transform: rotate(-8deg) scale(1); opacity: 1; }
+}
+
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-type); font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: var(--ember); padding: 12px 20px; border-radius: 3px; text-decoration: none; }
+.cta:hover { background: var(--paper); }
+.copy { font-family: var(--f-type); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; color: #6b5f52; border: 1px solid #8a7d6d; border-radius: 3px; padding: 3px 10px; margin-left: 10px; cursor: pointer; }
+.lang { position: absolute; top: 24px; right: max(16px, env(safe-area-inset-right, 0px)); font-family: var(--f-type); font-size: 14px; letter-spacing: 0.08em; color: var(--muted); }
+.lang a { color: var(--paper); }
+.copy:focus-visible { outline: 2px solid #b5531d; outline-offset: 2px; }
+.form a { color: #1d1813; text-decoration-color: #b5531d; }
+
+/* ---------- sections ---------- */
+section.case { border-bottom: 1px solid var(--line); }
+section.case > .wrap { padding-block: clamp(56px, 8vw, 104px); display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px 48px; }
+.side { padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.main { min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+.band { background: var(--ink-2); }
+
+.exhibit { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.exhibit img {
+  width: 100%;
+  max-width: 616px;
+  height: auto;
+  aspect-ratio: 616 / 347;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #000;
+}
+.exhibit figcaption { font-family: var(--f-type); font-size: 14px; color: var(--muted); letter-spacing: 0.04em; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 616px); gap: 40px; align-items: start; }
+.split > div { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+
+/* procedure */
+.steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 56px; counter-reset: step; }
+.step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 616px); gap: 40px; align-items: start; }
+.step .txt { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.step .no { font-family: var(--f-type); color: var(--ember); font-size: 15px; letter-spacing: 0.1em; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 0; list-style: none; }
+.tools li { font-family: var(--f-type); font-size: 14px; color: var(--paper); border: 1px solid var(--line); border-radius: 3px; padding: 4px 10px; }
+.eternities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 6px; }
+.eternities div { border-top: 2px solid var(--line); padding-top: 10px; }
+.eternities .n { font-family: var(--f-display); font-size: 44px; line-height: 1; color: var(--paper); }
+.eternities .hell { border-color: var(--ember); }
+.eternities .heaven { border-color: var(--sky); }
+
+/* numbers */
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.figures > div { padding: 22px 20px 22px 0; display: flex; flex-direction: column; gap: 6px; }
+.figures > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.fig { font-family: var(--f-display); font-size: clamp(40px, 5vw, 60px); line-height: 1; color: var(--paper); font-variant-numeric: tabular-nums; }
+.fig small { font-size: 0.45em; color: var(--paper-dim); margin-left: 4px; }
+.fig-l { font-size: 16px; line-height: 1.4; color: var(--paper-dim); }
+
+.chart { display: flex; flex-direction: column; gap: 12px; }
+.chart h3 { margin-bottom: 6px; }
+.row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 64px; gap: 14px; align-items: center; font-size: 17px; }
+.row .k { color: var(--paper-dim); }
+.row .track { height: 14px; background: #24201b; border-radius: 2px; overflow: hidden; }
+.row .bar { height: 100%; background: var(--ember); }
+.row .bar.sky { background: var(--sky); }
+.row .val { font-family: var(--f-type); color: var(--paper); text-align: right; font-variant-numeric: tabular-nums; }
+.note { font-size: 16px; color: var(--muted); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.two > * { min-width: 0; }
+.regions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; }
+.regions div { display: flex; flex-direction: column; gap: 2px; border-left: 2px solid var(--sky); padding-left: 14px; }
+
+/* testimony */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+blockquote {
+  margin: 0;
+  background: var(--paper);
+  color: #2b241d;
+  padding: 26px 28px 22px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: space-between;
+}
+blockquote p { font-size: 21px; line-height: 1.45; font-style: italic; max-width: none; }
+blockquote footer { font-family: var(--f-type); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b5f52; }
+blockquote.wide { grid-column: span 2; }
+
+.asks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
+.asks li { padding: 20px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.asks .fig { font-size: 44px; }
+
+/* closing form */
+.form { background: var(--paper); color: #2b241d; padding: clamp(24px, 4vw, 44px); border-radius: 2px; display: flex; flex-direction: column; gap: 22px; max-width: 760px; position: relative; }
+.form h2 { color: #1d1813; }
+.form .fld { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 6px 18px; align-items: end; }
+.form .fld .label { color: #6b5f52; }
+.form .fld .fill { font-family: var(--f-type); font-size: 18px; color: #1d1813; border-bottom: 1px dashed #8a7d6d; padding-bottom: 4px; min-width: 0; overflow-wrap: anywhere; }
+.form .fill.blank { color: #8a7d6d; }
+.form .seal { position: absolute; right: 28px; top: 26px; font-family: var(--f-type); color: #b5531d; border: 3px double #b5531d; border-radius: 6px; padding: 6px 12px; transform: rotate(7deg); text-transform: uppercase; letter-spacing: 0.12em; font-size: 15px; }
+
+footer.src { padding-block: 40px 56px; }
+footer.src .wrap { display: flex; flex-direction: column; gap: 8px; }
+footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
+
+@media (max-width: 900px) {
+  section.case > .wrap { grid-template-columns: minmax(0, 1fr); }
+  .side { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; padding-top: 0; }
+  .split, .step { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .two { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .figures > div:nth-child(3) { padding-left: 0; border-left: none; }
+  .figures > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .quotes, .asks { grid-template-columns: minmax(0, 1fr); }
+  blockquote.wide { grid-column: auto; }
+  .hero { background-position: 72% center; }
+  .hero .wrap { padding-bottom: 120px; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: rgba(19, 17, 15, 0.62); }
+  .stamp { bottom: 28px; left: max(16px, env(safe-area-inset-left, 0px)); right: auto; }
+}
+@media (max-width: 520px) {
+  body { font-size: 18px; }
+  .row { grid-template-columns: 96px minmax(0, 1fr) 52px; gap: 10px; font-size: 15px; }
+  .form .fld { grid-template-columns: minmax(0, 1fr); }
+  .form .seal { position: static; align-self: flex-start; }
+  .eternities .n { font-size: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stamp { animation: none; }
+}
+</style>
+</head>
+<body style="margin:0">
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="label">Chancellery of the Afterlife · Floor 10 · <b>Case file</b></span>
+      <img class="logo" src="media/logo.png" alt="The Final Stamp" width="906" height="653">
+      <p class="thesis">Papers, Please in the afterlife.</p>
+      <p class="lede">A first-person detective game. Question the dead, uncover their sins with strange instruments, and stamp the verdict: Hell, Heaven or Purgatory.</p>
+      <ul class="facts">
+        <li><span class="label">Genre</span><span class="v">Detective, judgement sim</span></li>
+        <li><span class="label">Platform</span><span class="v">PC, Steam</span></li>
+        <li><span class="label">Release</span><span class="v">Q4 2026</span></li>
+        <li><span class="label">Store page</span><span class="v">12 languages</span></li>
+      </ul>
+      <a class="cta" href="https://store.steampowered.com/app/4359110/?utm_source=pitch&amp;utm_medium=site&amp;utm_campaign=tfs_pitch" target="_blank" rel="noopener">Wishlist on Steam →</a>
+    </div>
+    <div class="stamp" aria-hidden="true">Demo<br>live on Steam</div>
+    <p class="lang">EN · <a href="ru/" hreflang="ru">RU</a></p>
+  </div>
+</header>
+
+<main>
+  <section class="case" id="premise">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>I.</b> Premise</span></div>
+      <div class="main">
+        <div class="split">
+          <div>
+            <h2>The dead lie too.</h2>
+            <p>On the tenth floor of the Chancellery of the Afterlife, another soul steps up to your desk. The paperwork is in order. The explanation is ready. All that’s left is the stamp, if you believe it.</p>
+            <p>A trucker talks about the crash and his family. Johny Goldstein talks about his charity work. Everyone shows up with a story, and nobody hurries to show you the other side of it.</p>
+          </div>
+          <figure class="exhibit">
+            <img src="media/02-verdict-hand.gif" alt="The verdict sheet flips to the stamp page, the stamp comes down, and the sheet is handed to the soul" width="616" height="347" loading="lazy">
+            <figcaption>Exhibit A. The stamp and “Hand to the soul”</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case band" id="procedure">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>II.</b> Procedure</span><span class="label">How a case runs</span></div>
+      <div class="main">
+        <ol class="steps">
+          <li class="step">
+            <div class="txt">
+              <span class="no">Step 1 of 4</span>
+              <h3>Hear their side</h3>
+              <p>Ask questions, catch contradictions, and come back with proof. Present the evidence and listen to how the story changes. Sometimes the new version sounds even more convincing.</p>
+            </div>
+            <figure class="exhibit">
+              <img src="media/03-talk-evidence.gif" alt="Questioning a soul and presenting a piece of evidence tagged Pride" width="616" height="347" loading="lazy">
+              <figcaption>Exhibit B. Questioning, then presenting the evidence</figcaption>
+            </figure>
+          </li>
+          <li class="step">
+            <div class="txt">
+              <span class="no">Step 2 of 4</span>
+              <h3>Check the body, not the papers</h3>
+              <p>Documents lie, the body does not. Hold up the Candle and the flame’s color gives away the sin. Test a hunch with the Camera, tune the Radio to a conversation from the past, and phone the afterlife’s own departments for records.</p>
+              <ul class="tools" aria-label="Instruments">
+                <li>Candle</li><li>Camera</li><li>Radio</li><li>Telephone</li><li>The Codex</li>
+              </ul>
+            </div>
+            <figure class="exhibit">
+              <img src="media/01-inst-camera.gif" alt="The camera is aimed at a hand, the shutter clicks, and the photo develops with the word PRIDE" width="616" height="347" loading="lazy">
+              <figcaption>Exhibit C. The Camera finds the sin</figcaption>
+            </figure>
+          </li>
+          <li class="step">
+            <div class="txt">
+              <span class="no">Step 3 of 4</span>
+              <h3>Build the case word by word</h3>
+              <p>Words from documents and testimony turn into tiles on your desk. Combine them with other evidence to rebuild what happened, find a motive and the grounds for a verdict. Death is only where the case begins.</p>
+            </div>
+            <div></div>
+          </li>
+          <li class="step">
+            <div class="txt">
+              <span class="no">Step 4 of 4</span>
+              <h3>One stamp. Three eternities.</h3>
+              <p>Open the Codex, choose a destination and fill out the verdict sheet. A convenient story can send a murderer to Heaven. A suspicious detail can turn out to be innocent.</p>
+              <div class="eternities">
+                <div class="hell"><span class="n">9</span><span class="label">circles of Hell</span></div>
+                <div><span class="n">7</span><span class="label">terraces of Purgatory</span></div>
+                <div class="heaven"><span class="n">7</span><span class="label">spheres of Heaven</span></div>
+              </div>
+            </div>
+            <figure class="exhibit">
+              <img src="media/02b-verdict-fill.gif" alt="Filling the verdict sheet: Hell, Purgatory or Heaven, then a circle from 1 to 9" width="616" height="347" loading="lazy">
+              <figcaption>Exhibit D. The verdict sheet</figcaption>
+            </figure>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="mystery">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>III.</b> The clerk</span></div>
+      <div class="main">
+        <div class="split">
+          <div>
+            <h2>Who are you to judge?</h2>
+            <p>The Chancellery keeps traces of those who sat at this desk before you. Between appointments, search the office and find out how you ended up on this side of it.</p>
+            <p>On a new playthrough some souls tell a different truth, and a familiar face does not mean a familiar answer. Your own path leads to one of two endings, depending on how you did the job.</p>
+          </div>
+          <figure class="exhibit">
+            <img src="media/04-eyes-dual.gif" alt="Dual sight: the dark eye shows a green haze with a hidden point, the light eye shows symbols and a caption that the outward appearance does not match the true nature" width="616" height="347" loading="lazy">
+            <figcaption>Exhibit E. Two kinds of sight</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case band" id="steam">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>IV.</b> Steam demo</span><span class="label">Lifetime, to 2 Nov 2026</span></div>
+      <div class="main">
+        <h2>42% stayed past half an hour.</h2>
+        <div class="figures">
+          <div><span class="fig">1,298</span><span class="fig-l">added the demo to their Steam library</span></div>
+          <div><span class="fig">240</span><span class="fig-l">unique players</span></div>
+          <div><span class="fig">39<small>min</small></span><span class="fig-l">average time played</span></div>
+          <div><span class="fig">19<small>min</small></span><span class="fig-l">median time played</span></div>
+        </div>
+        <div class="two">
+          <div class="chart" role="img" aria-label="Share of demo players by minimum time played: 10 minutes 62 percent, 30 minutes 42 percent, 1 hour 15 percent, 2 hours 5 percent">
+            <h3>How long players stayed</h3>
+            <div class="row"><span class="k">10+ minutes</span><span class="track"><span class="bar" style="display:block;width:62%"></span></span><span class="val">62%</span></div>
+            <div class="row"><span class="k">30+ minutes</span><span class="track"><span class="bar" style="display:block;width:42%"></span></span><span class="val">42%</span></div>
+            <div class="row"><span class="k">1+ hour</span><span class="track"><span class="bar" style="display:block;width:15%"></span></span><span class="val">15%</span></div>
+            <div class="row"><span class="k">2+ hours</span><span class="track"><span class="bar" style="display:block;width:5%"></span></span><span class="val">5%</span></div>
+            <p class="note">Share of 237 measured players. Steam rates the 1-hour figure as average for a Steam demo.</p>
+          </div>
+          <div class="chart" role="img" aria-label="Top countries by share of 226 demo downloads">
+            <h3>Where the players are</h3>
+            <div class="row"><span class="k">United States</span><span class="track"><span class="bar sky" style="display:block;width:90.5%"></span></span><span class="val">18.1%</span></div>
+            <div class="row"><span class="k">China</span><span class="track"><span class="bar sky" style="display:block;width:77%"></span></span><span class="val">15.4%</span></div>
+            <div class="row"><span class="k">Russia</span><span class="track"><span class="bar sky" style="display:block;width:68.5%"></span></span><span class="val">13.7%</span></div>
+            <div class="row"><span class="k">United Kingdom</span><span class="track"><span class="bar sky" style="display:block;width:33%"></span></span><span class="val">6.6%</span></div>
+            <div class="row"><span class="k">Germany</span><span class="track"><span class="bar sky" style="display:block;width:30.5%"></span></span><span class="val">6.1%</span></div>
+            <div class="row"><span class="k">France</span><span class="track"><span class="bar sky" style="display:block;width:22%"></span></span><span class="val">4.4%</span></div>
+            <p class="note">Bars on a 0–20% scale. 226 downloads in total.</p>
+          </div>
+        </div>
+        <div class="regions">
+          <div><span class="fig" style="font-size:40px">25%</span><span class="label">Western Europe</span></div>
+          <div><span class="fig" style="font-size:40px">22%</span><span class="label">Asia</span></div>
+          <div><span class="fig" style="font-size:40px">21%</span><span class="label">North America</span></div>
+          <div><span class="fig" style="font-size:40px">18%</span><span class="label">Central Asia</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="playtest">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>V.</b> Playtest</span><span class="label">38 surveys · 28 Sep – 26 Oct 2026</span></div>
+      <div class="main">
+        <h2>Most would judge another soul.</h2>
+        <div class="figures">
+          <div><span class="fig">3.7<small>/ 5</small></span><span class="fig-l">average rating, 22 of 38 gave 4 or 5</span></div>
+          <div><span class="fig">74%</span><span class="fig-l">would judge another soul (28 of 38)</span></div>
+          <div><span class="fig">58%</span><span class="fig-l">reached the end of the shift (22 of 38)</span></div>
+          <div><span class="fig">58%</span><span class="fig-l">would pay $5 or more, most picked $5–15</span></div>
+        </div>
+        <div class="two">
+          <div class="chart" role="img" aria-label="Rating distribution: 5 stars 13, 4 stars 9, 3 stars 8, 2 stars 6, 1 star 2">
+            <h3>Ratings</h3>
+            <div class="row"><span class="k">5</span><span class="track"><span class="bar" style="display:block;width:100%"></span></span><span class="val">13</span></div>
+            <div class="row"><span class="k">4</span><span class="track"><span class="bar" style="display:block;width:69.2%"></span></span><span class="val">9</span></div>
+            <div class="row"><span class="k">3</span><span class="track"><span class="bar" style="display:block;width:61.5%"></span></span><span class="val">8</span></div>
+            <div class="row"><span class="k">2</span><span class="track"><span class="bar" style="display:block;width:46.2%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">1</span><span class="track"><span class="bar" style="display:block;width:15.4%"></span></span><span class="val">2</span></div>
+            <p class="note">Russian-language players averaged 4.3 (21 surveys), English-language 3.1 (13). Two German, one Korean and one Chinese survey.</p>
+          </div>
+          <div class="chart">
+            <h3>Time in the session</h3>
+            <div class="row"><span class="k">Over an hour</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">30–60 min</span><span class="track"><span class="bar sky" style="display:block;width:100%"></span></span><span class="val">18</span></div>
+            <div class="row"><span class="k">15–30 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">5–15 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">Under 5 min</span><span class="track"><span class="bar sky" style="display:block;width:11.1%"></span></span><span class="val">2</span></div>
+            <p class="note">Self-reported, number of surveys.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case band" id="testimony">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>VI.</b> Testimony</span><span class="label">From the survey</span></div>
+      <div class="main">
+        <h2>In the players’ words</h2>
+        <div class="quotes">
+          <blockquote class="wide">
+            <p>“The game is about confrontation with unyielding truth. Even when deceit is impossible, the souls lie about their misdeeds and shortcomings. The protagonist is not better than them. They are just on the other side of the desk.”</p>
+            <footer>Playtester, English survey</footer>
+          </blockquote>
+          <blockquote>
+            <p>“Saint Peter’s deputy.”</p>
+            <footer>Playtester, rated 5 · translated from Russian</footer>
+          </blockquote>
+          <blockquote>
+            <p>“A game about how hard it is to make the right decisions.”</p>
+            <footer>Playtester, rated 5 · translated from Russian</footer>
+          </blockquote>
+          <blockquote>
+            <p>“The game revolves around investigating the stories of the deceased, examining evidence, and then deciding their fate: Heaven, Hell, or Purgatory.”</p>
+            <footer>Playtester, rated 5 · English survey</footer>
+          </blockquote>
+          <blockquote>
+            <p>“The theme hooked me, the idea is great, I really want to see what comes next. The tutorial needs work.”</p>
+            <footer>Playtester, rated 4 · translated from Russian</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="next">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>VII.</b> Next build</span><span class="label">What the playtest asks for</span></div>
+      <div class="main">
+        <h2>The first five minutes decide it.</h2>
+        <p>Most complaints are about the first minutes, not the cases themselves. The survey points at four fixes.</p>
+        <ul class="asks">
+          <li><h3>Teach one instrument at a time</h3><p>The most common complaint: the tutorial and the Codex show everything at once, before the hands-on part.</p></li>
+          <li><span class="fig">28 / 38</span><p>never noticed the flame in the urn, the game’s signal for how the verdict landed.</p></li>
+          <li><span class="fig">20 / 38</span><p>wanted the game to say outright whether their verdict was right.</p></li>
+          <li><h3>Fix the rotary phone</h3><p>Players liked the idea, but the dial often lands on a wrong number.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case band" id="contact">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>VIII.</b> Application</span></div>
+      <div class="main">
+        <div class="form">
+          <span class="seal" aria-hidden="true">Received</span>
+          <span class="label" style="color:#6b5f52">Form 10-F · Completed by the applicant</span>
+          <h2>The Chancellery is hiring.</h2>
+          <div class="fld"><span class="label">Studio</span><span class="fill">Astra Interactive Games</span></div>
+          <div class="fld"><span class="label">Release window</span><span class="fill">Q4 2026</span></div>
+          <div class="fld"><span class="label">We are looking for</span><span class="fill">A publisher and partial funding</span></div>
+          <div class="fld"><span class="label">Contact</span><span class="fill"><span id="mail">mar.davidoff@gmail.com</span><button class="copy" type="button" id="copy-mail" data-ok="Copied" data-sel="Selected, press Ctrl+C">Copy</button></span></div>
+          <div class="fld"><span class="label">Steam</span><span class="fill"><a href="https://store.steampowered.com/app/4359110/?utm_source=pitch&amp;utm_medium=site&amp;utm_campaign=tfs_pitch" target="_blank" rel="noopener">The Final Stamp on Steam</a>, demo app 5277770</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="src">
+  <div class="wrap">
+    <span class="label">Sources</span>
+    <p>Steamworks sales and activation reports for The Final Stamp Demo (app 5277770): lifetime figures, downloads by region and play time, as of 2 November 2026.</p>
+    <p>Playtest survey in Google Forms, 38 unique responses from 28 September to 26 October 2026, in Russian, English, German, Korean and Chinese. Quotes are verbatim or translated as marked.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  var btn = document.getElementById('copy-mail');
+  var mail = document.getElementById('mail');
+  if (!btn || !mail) return;
+  var label = btn.textContent;
+  function done(text) { btn.textContent = text; setTimeout(function () { btn.textContent = label; }, 1800); }
+  function selectMail() { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  btn.addEventListener('click', function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail.textContent).then(function () { done(btn.dataset.ok); }, function () { selectMail(); done(btn.dataset.sel); });
+    } else { selectMail(); done(btn.dataset.sel); }
+  });
+})();
+</script>
+</body>
+</html>
