@@ -200,6 +200,21 @@ footer.src { padding-block: 40px 56px; }
 footer.src .wrap { display: flex; flex-direction: column; gap: 8px; }
 footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 
+/* case materials */
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.shot { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.shot a { display: block; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #24201b; }
+.shot a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+.shot img { width: 100%; height: 240px; object-fit: cover; object-position: top left; display: block; }
+.shot figcaption { font-family: var(--f-type); font-size: 14px; color: var(--muted); }
+.files { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.files li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.files li > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.files .meta { font-family: var(--f-type); font-size: 14px; color: var(--muted); }
+.dl { font-family: var(--f-type); font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ember); text-decoration: none; border: 1px solid var(--ember); border-radius: 3px; padding: 8px 14px; white-space: nowrap; }
+.dl:hover { background: var(--ember); color: var(--ink); }
+@media (max-width: 900px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
 @media (max-width: 900px) {
   section.case > .wrap { grid-template-columns: minmax(0, 1fr); }
   .side { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; padding-top: 0; }
@@ -472,9 +487,29 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case band" id="contact">
+  <section class="case band" id="materials">
     <div class="wrap">
-      <div class="side"><span class="label"><b>VIII.</b> Заявка</span></div>
+      <div class="side"><span class="label"><b>VIII.</b> Материалы дела</span><span class="label">Исходные данные для скачивания</span></div>
+      <div class="main">
+        <h2>Проверьте наши цифры.</h2>
+        <p>Все цифры на этой странице взяты из этих файлов: скриншотов Steamworks от 2 ноября 2026 года и всех 38 анкет плейтеста. Контакты игроков удалены.</p>
+        <div class="shots">
+          <figure class="shot"><a href="../files/steam-1-overview.png" target="_blank" rel="noopener"><img src="../files/steam-1-overview.png" alt="Общая статистика The Final Stamp Demo в Steamworks: 1 298 бесплатных лицензий, 240 уникальных игроков, медиана 19 минут" loading="lazy"></a><figcaption>Steamworks · Общая статистика</figcaption></figure>
+          <figure class="shot"><a href="../files/steam-4-playtime.png" target="_blank" rel="noopener"><img src="../files/steam-4-playtime.png" alt="Время в игре по данным Steamworks: в среднем 39 минут, 42 процента игроков провели 30 минут и больше" loading="lazy"></a><figcaption>Steamworks · Время в игре</figcaption></figure>
+          <figure class="shot"><a href="../files/steam-2-regions.png" target="_blank" rel="noopener"><img src="../files/steam-2-regions.png" alt="Загрузки по регионам в Steamworks: 226 загрузок, Западная Европа 24,7 процента, Азия 21,6, Северная Америка 21,2" loading="lazy"></a><figcaption>Steamworks · Загрузки по регионам</figcaption></figure>
+          <figure class="shot"><a href="../files/steam-3-countries.png" target="_blank" rel="noopener"><img src="../files/steam-3-countries.png" alt="Загрузки по странам в Steamworks: США 18,1 процента, Китай 15,4, Россия 13,7" loading="lazy"></a><figcaption>Steamworks · Загрузки по странам</figcaption></figure>
+        </div>
+        <ul class="files">
+          <li><div><h3>Ответы плейтеста</h3><span class="meta">Excel · 38 анкет на 5 языках, лист со сводкой, скрины Steam · 264 КБ</span></div><a class="dl" href="../files/the-final-stamp-playtest-answers.xlsx" download>Скачать .xlsx</a></li>
+          <li><div><h3>Скриншоты Steam</h3><span class="meta">ZIP · 4 файла PNG · 239 КБ</span></div><a class="dl" href="../files/the-final-stamp-steam-screenshots.zip" download>Скачать .zip</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="contact">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>IX.</b> Заявка</span></div>
       <div class="main">
         <div class="form">
           <span class="seal" aria-hidden="true">Принято</span>

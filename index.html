@@ -199,6 +199,21 @@ footer.src { padding-block: 40px 56px; }
 footer.src .wrap { display: flex; flex-direction: column; gap: 8px; }
 footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 
+/* case materials */
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.shot { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.shot a { display: block; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #24201b; }
+.shot a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+.shot img { width: 100%; height: 240px; object-fit: cover; object-position: top left; display: block; }
+.shot figcaption { font-family: var(--f-type); font-size: 14px; color: var(--muted); }
+.files { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.files li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.files li > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.files .meta { font-family: var(--f-type); font-size: 14px; color: var(--muted); }
+.dl { font-family: var(--f-type); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ember); text-decoration: none; border: 1px solid var(--ember); border-radius: 3px; padding: 8px 14px; white-space: nowrap; }
+.dl:hover { background: var(--ember); color: var(--ink); }
+@media (max-width: 900px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
 @media (max-width: 900px) {
   section.case > .wrap { grid-template-columns: minmax(0, 1fr); }
   .side { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; padding-top: 0; }
@@ -469,9 +484,29 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case band" id="contact">
+  <section class="case band" id="materials">
     <div class="wrap">
-      <div class="side"><span class="label"><b>VIII.</b> Application</span></div>
+      <div class="side"><span class="label"><b>VIII.</b> Case materials</span><span class="label">Raw data to download</span></div>
+      <div class="main">
+        <h2>Check our numbers.</h2>
+        <p>Every figure on this page comes from these files: Steamworks screenshots taken on 2 November 2026 and all 38 playtest surveys. Players’ contact details are removed.</p>
+        <div class="shots">
+          <figure class="shot"><a href="files/steam-1-overview.png" target="_blank" rel="noopener"><img src="files/steam-1-overview.png" alt="Steamworks lifetime overview of The Final Stamp Demo: 1,298 free licenses, 240 unique users, median time played 19 minutes" loading="lazy"></a><figcaption>Steamworks · Lifetime overview</figcaption></figure>
+          <figure class="shot"><a href="files/steam-4-playtime.png" target="_blank" rel="noopener"><img src="files/steam-4-playtime.png" alt="Steamworks play time stats: average 39 minutes, 42 percent of players stayed 30 minutes or more" loading="lazy"></a><figcaption>Steamworks · Play time</figcaption></figure>
+          <figure class="shot"><a href="files/steam-2-regions.png" target="_blank" rel="noopener"><img src="files/steam-2-regions.png" alt="Steamworks downloads by region: 226 downloads, Western Europe 24.7 percent, Asia 21.6, North America 21.2" loading="lazy"></a><figcaption>Steamworks · Downloads by region</figcaption></figure>
+          <figure class="shot"><a href="files/steam-3-countries.png" target="_blank" rel="noopener"><img src="files/steam-3-countries.png" alt="Steamworks downloads by country: United States 18.1 percent, China 15.4, Russia 13.7" loading="lazy"></a><figcaption>Steamworks · Downloads by country</figcaption></figure>
+        </div>
+        <ul class="files">
+          <li><div><h3>Playtest answers</h3><span class="meta">Excel · 38 surveys in 5 languages, summary sheet, Steam screenshots · 264 KB</span></div><a class="dl" href="files/the-final-stamp-playtest-answers.xlsx" download>Download .xlsx</a></li>
+          <li><div><h3>Steam screenshots</h3><span class="meta">ZIP · 4 PNG files · 239 KB</span></div><a class="dl" href="files/the-final-stamp-steam-screenshots.zip" download>Download .zip</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="contact">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>IX.</b> Application</span></div>
       <div class="main">
         <div class="form">
           <span class="seal" aria-hidden="true">Received</span>
