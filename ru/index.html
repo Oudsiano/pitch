@@ -204,6 +204,17 @@ footer.src { padding-block: 40px 56px; }
 footer.src .wrap { display: flex; flex-direction: column; gap: 8px; }
 footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 
+/* production */
+.road { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.road li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.road li p { max-width: none; }
+.st { font-family: var(--f-type); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; justify-self: start; white-space: nowrap; }
+.st.done { color: var(--ink); background: var(--sky); }
+.st.now { color: var(--ink); background: var(--ember); }
+.st.next { color: var(--paper-dim); border: 1px solid var(--line); }
+.adds { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; max-width: 70ch; }
+@media (max-width: 520px) { .road li { grid-template-columns: minmax(0, 1fr); } }
+
 /* case materials */
 .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .shot { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
@@ -510,9 +521,41 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case band" id="materials">
+  <section class="case band" id="production">
     <div class="wrap">
-      <div class="side"><span class="label"><b>VIII.</b> Материалы дела</span><span class="label">Исходные данные для скачивания</span></div>
+      <div class="side"><span class="label"><b>VIII.</b> Производство</span><span class="label">Состояние на 3 ноября 2026</span></div>
+      <div class="main">
+        <h2>Полная игра написана. Теперь собираем.</h2>
+        <p>Демо охватывает обучение и первую душу, Боба. Полная игра расписана и проверена на бумаге от начала до конца, сборка началась 2 ноября 2026 года.</p>
+        <div class="figures">
+          <div><span class="fig">15</span><span class="fig-l">душ на суд</span></div>
+          <div><span class="fig">~8<small>ч</small></span><span class="fig-l">игры</span></div>
+          <div><span class="fig">3</span><span class="fig-l">концовки</span></div>
+          <div><span class="fig">12</span><span class="fig-l">языков</span></div>
+        </div>
+        <ul class="road" aria-label="План производства">
+          <li><span class="st done">Готово</span><p>Демо в Steam: обучение и дело Боба</p></li>
+          <li><span class="st done">Готово</span><p>15 моделей персонажей уже в движке</p></li>
+          <li><span class="st done">Готово</span><p>Вся игра написана на бумаге, каждая ветка проверена: все три концовки достижимы, тупиков нет</p></li>
+          <li><span class="st done">Готово</span><p>Интро-ролик и сценарии ещё пяти катсцен: папка № 000, три концовки и десятый круг</p></li>
+          <li><span class="st now">В работе</span><p>Волна 1: Элиза, Джаред и Уилл проходимы в полной игре, приборы покупаются</p></li>
+          <li><span class="st next">Дальше</span><p>Волны 2 и 3: переводы и допросы, затем кампания на 19 позиций на втором этаже</p></li>
+          <li><span class="st next">Дальше</span><p>Волны 4 и 5: остальные 11 душ, у части несколько версий, которые выпадают случайно в каждой новой игре</p></li>
+          <li><span class="st next">В конце</span><p>Волна 6: финал с тремя концовками и бот, который проходит всю игру</p></li>
+        </ul>
+        <h3>Что добавляет полная игра</h3>
+        <ul class="adds">
+          <li>В каждой новой игре у части душ выпадает другая версия, и знакомое дело может обернуться иначе.</li>
+          <li>Фотоаппарат, радио и двойное зрение покупаются по ходу игры. Без них дела раскрываемы, но сложнее.</li>
+          <li>Канцелярия дотягивается до живых только бумагой, а один скрытый выбор меняет концовку.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="materials">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>IX.</b> Материалы дела</span><span class="label">Исходные данные для скачивания</span></div>
       <div class="main">
         <h2>Проверьте наши цифры.</h2>
         <p>Все цифры на этой странице взяты из этих файлов: скриншотов Steamworks от 2 ноября 2026 года и всех 38 анкет плейтеста. Контакты игроков удалены.</p>
@@ -530,9 +573,9 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case" id="contact">
+  <section class="case band" id="contact">
     <div class="wrap">
-      <div class="side"><span class="label"><b>IX.</b> Заявка</span></div>
+      <div class="side"><span class="label"><b>X.</b> Заявка</span></div>
       <div class="main">
         <div class="form">
           <span class="seal" aria-hidden="true">Принято</span>
@@ -554,6 +597,7 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     <span class="label">Источники</span>
     <p>Отчёты Steamworks по The Final Stamp Demo (app 5277770): общие показатели за всё время, загрузки по регионам и время в игре, на 2 ноября 2026 года.</p>
     <p>Анкета плейтеста в Google Forms: 38 уникальных ответов с 28 сентября по 26 октября 2026 года, на русском, английском, немецком, корейском и китайском. Русские цитаты приведены дословно, с поправкой орфографии и пунктуации; английские в переводе, как отмечено.</p>
+    <p>Состояние производства взято из рабочих заметок студии на 3 ноября 2026 года.</p>
   </div>
 </footer>
 <script>

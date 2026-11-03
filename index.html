@@ -203,6 +203,17 @@ footer.src { padding-block: 40px 56px; }
 footer.src .wrap { display: flex; flex-direction: column; gap: 8px; }
 footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 
+/* production */
+.road { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.road li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.road li p { max-width: none; }
+.st { font-family: var(--f-type); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; justify-self: start; white-space: nowrap; }
+.st.done { color: var(--ink); background: var(--sky); }
+.st.now { color: var(--ink); background: var(--ember); }
+.st.next { color: var(--paper-dim); border: 1px solid var(--line); }
+.adds { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; max-width: 70ch; }
+@media (max-width: 520px) { .road li { grid-template-columns: minmax(0, 1fr); } }
+
 /* case materials */
 .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .shot { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
@@ -412,7 +423,7 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
             <div class="row"><span class="k">United Kingdom</span><span class="track"><span class="bar sky" style="display:block;width:33%"></span></span><span class="val">6.6%</span></div>
             <div class="row"><span class="k">Germany</span><span class="track"><span class="bar sky" style="display:block;width:30.5%"></span></span><span class="val">6.1%</span></div>
             <div class="row"><span class="k">France</span><span class="track"><span class="bar sky" style="display:block;width:22%"></span></span><span class="val">4.4%</span></div>
-            <p class="note">Bars on a 0–20% scale. 226 downloads in total.</p>
+            <p class="note">Bars on a 0-20% scale. 226 downloads in total.</p>
           </div>
         </div>
         <div class="regions">
@@ -427,14 +438,14 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 
   <section class="case" id="playtest">
     <div class="wrap">
-      <div class="side"><span class="label"><b>V.</b> Playtest</span><span class="label">38 surveys · 28 Sep – 26 Oct 2026</span></div>
+      <div class="side"><span class="label"><b>V.</b> Playtest</span><span class="label">38 surveys · 28 Sep - 26 Oct 2026</span></div>
       <div class="main">
         <h2>Most would judge another soul.</h2>
         <div class="figures">
           <div><span class="fig">3.7<small>/ 5</small></span><span class="fig-l">average rating, 22 of 38 gave 4 or 5</span></div>
           <div><span class="fig">74%</span><span class="fig-l">would judge another soul (28 of 38)</span></div>
           <div><span class="fig">58%</span><span class="fig-l">reached the end of the shift (22 of 38)</span></div>
-          <div><span class="fig">58%</span><span class="fig-l">would pay $5 or more, most picked $5–15</span></div>
+          <div><span class="fig">58%</span><span class="fig-l">would pay $5 or more, most picked $5-15</span></div>
         </div>
         <div class="two">
           <div class="chart" role="img" aria-label="Rating distribution: 5 stars 13, 4 stars 9, 3 stars 8, 2 stars 6, 1 star 2">
@@ -449,9 +460,9 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
           <div class="chart">
             <h3>Time in the session</h3>
             <div class="row"><span class="k">Over an hour</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
-            <div class="row"><span class="k">30–60 min</span><span class="track"><span class="bar sky" style="display:block;width:100%"></span></span><span class="val">18</span></div>
-            <div class="row"><span class="k">15–30 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
-            <div class="row"><span class="k">5–15 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">30-60 min</span><span class="track"><span class="bar sky" style="display:block;width:100%"></span></span><span class="val">18</span></div>
+            <div class="row"><span class="k">15-30 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
+            <div class="row"><span class="k">5-15 min</span><span class="track"><span class="bar sky" style="display:block;width:33.3%"></span></span><span class="val">6</span></div>
             <div class="row"><span class="k">Under 5 min</span><span class="track"><span class="bar sky" style="display:block;width:11.1%"></span></span><span class="val">2</span></div>
             <p class="note">Self-reported, number of surveys.</p>
           </div>
@@ -507,9 +518,41 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case band" id="materials">
+  <section class="case band" id="production">
     <div class="wrap">
-      <div class="side"><span class="label"><b>VIII.</b> Case materials</span><span class="label">Raw data to download</span></div>
+      <div class="side"><span class="label"><b>VIII.</b> Production</span><span class="label">Status on 3 Nov 2026</span></div>
+      <div class="main">
+        <h2>The full game is written. Now we build it.</h2>
+        <p>The demo covers the tutorial and the first soul, Bob. The full game is planned and checked end to end on paper, and assembly started on 2 November 2026.</p>
+        <div class="figures">
+          <div><span class="fig">15</span><span class="fig-l">souls to judge</span></div>
+          <div><span class="fig">~8<small>h</small></span><span class="fig-l">of play</span></div>
+          <div><span class="fig">3</span><span class="fig-l">endings</span></div>
+          <div><span class="fig">12</span><span class="fig-l">languages</span></div>
+        </div>
+        <ul class="road" aria-label="Production roadmap">
+          <li><span class="st done">Done</span><p>Demo on Steam: the tutorial and Bob’s case</p></li>
+          <li><span class="st done">Done</span><p>15 character models already in the engine</p></li>
+          <li><span class="st done">Done</span><p>The whole game written on paper with every branch checked: all three endings can be reached, no dead ends</p></li>
+          <li><span class="st done">Done</span><p>The intro cutscene, plus scripts for five more: folder No. 000, three endings and the tenth circle</p></li>
+          <li><span class="st now">In progress</span><p>Wave 1: Eliza, Jared and Will playable in the full game, with instruments you buy</p></li>
+          <li><span class="st next">Next</span><p>Waves 2 and 3: translations and interrogations, then a campaign of 19 positions on the second floor</p></li>
+          <li><span class="st next">Next</span><p>Waves 4 and 5: the other 11 souls, some with several versions drawn at random in each new game</p></li>
+          <li><span class="st next">Last</span><p>Wave 6: the finale with three endings and a bot that plays the whole game through</p></li>
+        </ul>
+        <h3>What the full game adds</h3>
+        <ul class="adds">
+          <li>Each new game draws different versions of some souls, so a case you know can turn out differently.</li>
+          <li>The camera, the radio and dual sight are bought during the game. Cases stay solvable without them, just harder.</li>
+          <li>The Chancellery reaches the living only through paperwork, and one hidden choice changes the ending.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="case" id="materials">
+    <div class="wrap">
+      <div class="side"><span class="label"><b>IX.</b> Case materials</span><span class="label">Raw data to download</span></div>
       <div class="main">
         <h2>Check our numbers.</h2>
         <p>Every figure on this page comes from these files: Steamworks screenshots taken on 2 November 2026 and all 38 playtest surveys. Players’ contact details are removed.</p>
@@ -527,9 +570,9 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     </div>
   </section>
 
-  <section class="case" id="contact">
+  <section class="case band" id="contact">
     <div class="wrap">
-      <div class="side"><span class="label"><b>IX.</b> Application</span></div>
+      <div class="side"><span class="label"><b>X.</b> Application</span></div>
       <div class="main">
         <div class="form">
           <span class="seal" aria-hidden="true">Received</span>
@@ -551,6 +594,7 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
     <span class="label">Sources</span>
     <p>Steamworks sales and activation reports for The Final Stamp Demo (app 5277770): lifetime figures, downloads by region and play time, as of 2 November 2026.</p>
     <p>Playtest survey in Google Forms, 38 unique responses from 28 September to 26 October 2026, in Russian, English, German, Korean and Chinese. Quotes are verbatim or translated as marked.</p>
+    <p>Production status comes from the studio’s development notes as of 3 November 2026.</p>
   </div>
 </footer>
 <script>
