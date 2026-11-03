@@ -65,7 +65,7 @@ a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
 /* ---------- hero ---------- */
 .hero {
   position: relative;
-  background: var(--ink) url('../media/cover.jpg') right center / cover no-repeat;
+  background: var(--ink) url('../media/hero-intro.jpg') center / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
 .hero .wrap { padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 96px); position: relative; }
@@ -107,6 +107,10 @@ a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
 .copy:focus-visible { outline: 2px solid #b5531d; outline-offset: 2px; }
 .form a { color: #1d1813; text-decoration-color: #b5531d; }
 
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% center; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(19, 17, 15, 0.94) 0%, rgba(19, 17, 15, 0.82) 32%, rgba(19, 17, 15, 0.38) 62%, rgba(19, 17, 15, 0.18) 100%); }
+.hero .wrap { z-index: 1; }
+
 /* ---------- sections ---------- */
 section.case { border-bottom: 1px solid var(--line); }
 section.case > .wrap { padding-block: clamp(56px, 8vw, 104px); display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px 48px; }
@@ -115,11 +119,11 @@ section.case > .wrap { padding-block: clamp(56px, 8vw, 104px); display: grid; gr
 .band { background: var(--ink-2); }
 
 .exhibit { margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.exhibit img {
+.exhibits { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.exhibit img, .exhibit video {
   width: 100%;
   max-width: 616px;
   height: auto;
-  aspect-ratio: 616 / 347;
   display: block;
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -227,7 +231,7 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
   blockquote.wide { grid-column: auto; }
   .hero { background-position: 72% center; }
   .hero .wrap { padding-bottom: 120px; }
-  .hero::before { content: ""; position: absolute; inset: 0; background: rgba(19, 17, 15, 0.62); }
+  .hero::after { background: rgba(19, 17, 15, 0.66); }
   .stamp { bottom: 28px; left: max(16px, env(safe-area-inset-left, 0px)); right: auto; }
 }
 @media (max-width: 520px) {
@@ -241,12 +245,14 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   .stamp { animation: none; }
+  .hero-video { display: none; }
 }
 </style>
 </head>
 <body style="margin:0">
 
 <header class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="../media/hero-intro.jpg" aria-hidden="true"><source src="../media/hero-intro.mp4" type="video/mp4"></video>
   <div class="wrap">
     <div class="hero-inner">
       <span class="label">Канцелярия загробного мира · 10 этаж · <b>Личное дело</b></span>
@@ -278,9 +284,9 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
             <p>Дальнобойщик рассказывает об аварии и о семье. Джонни Голдштейн рассказывает о благотворительности. Каждый приходит со своей историей, и никто не спешит показать её изнанку.</p>
           </div>
           <figure class="exhibit">
-            <img src="../media/02-verdict-hand.gif" alt="Бланк вердикта переворачивается на страницу печати, опускается штамп, и бланк передают душе" width="616" height="347" loading="lazy">
-            <figcaption>Улика А. Печать и передача бланка душе</figcaption>
-          </figure>
+              <video src="../media/bob-lie.mp4" poster="../media/bob-lie.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-label="Среди вещей Боба розовая визитка с подписью Angeline; Боб пожимает плечами и отрицает знакомство"></video>
+              <figcaption>Улика А. В вещах Боба визитка. Его ответ: «Впервые её вижу, начальник»</figcaption>
+            </figure>
         </div>
       </div>
     </div>
@@ -298,8 +304,8 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
               <p>Задавайте вопросы, ловите противоречия и возвращайтесь с доказательствами. Предъявите улику и послушайте, как меняется рассказ. Иногда новая версия звучит ещё убедительнее старой.</p>
             </div>
             <figure class="exhibit">
-              <img src="../media/03-talk-evidence.gif" alt="Допрос души и предъявление улики с тегом «Гордыня»" width="616" height="347" loading="lazy">
-              <figcaption>Улика Б. Допрос и предъявление улики</figcaption>
+              <video src="../media/bob-interrogation.mp4" poster="../media/bob-interrogation.jpg" width="1170" height="476" autoplay muted loop playsinline preload="metadata" aria-label="Допрос Боба: выбор между вопросом о детском рисунке, о визитке и концом разговора"></video>
+              <figcaption>Улика Б. Допрос Боба: спросить про детский рисунок, про визитку или закончить разговор</figcaption>
             </figure>
           </li>
           <li class="step">
@@ -311,10 +317,16 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
                 <li>Свеча</li><li>Фотоаппарат</li><li>Радио</li><li>Телефон</li><li>Кодекс</li>
               </ul>
             </div>
+            <div class="exhibits">
             <figure class="exhibit">
-              <img src="../media/01-inst-camera.gif" alt="Фотоаппарат наводят на руку, щелчок затвора, и на проявленном снимке появляется слово PRIDE" width="616" height="347" loading="lazy">
-              <figcaption>Улика В. Фотоаппарат находит грех</figcaption>
+              <video src="../media/bob-candle.mp4" poster="../media/bob-candle.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-label="Перед Бобом, стоящим за столом, пламя свечи вспыхивает красным"></video>
+              <figcaption>Улика В. Свеча вспыхивает красным перед Бобом</figcaption>
             </figure>
+            <figure class="exhibit">
+              <video src="../media/radio.mp4" poster="../media/radio.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-label="Старое радио на столе настраивают на волну"></video>
+              <figcaption>Улика Г. Радио ловит разговор из прошлого</figcaption>
+            </figure>
+            </div>
           </li>
           <li class="step">
             <div class="txt">
@@ -322,7 +334,10 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
               <h3>Собирайте дело по словам</h3>
               <p>Слова из документов и показаний превращаются в плитки на вашем столе. Соединяйте их с другими уликами, чтобы восстановить, что случилось, найти мотив и основания для вердикта. Смерть - только начало дела.</p>
             </div>
-            <div></div>
+            <figure class="exhibit">
+              <video src="../media/drawing-lens.mp4" poster="../media/drawing-lens.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-label="Детский рисунок семьи осматривают вблизи, и он становится тегом"></video>
+              <figcaption>Улика Д. Рисунок сына Боба. При осмотре вблизи он становится тегом «Семья»</figcaption>
+            </figure>
           </li>
           <li class="step">
             <div class="txt">
@@ -336,8 +351,8 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
               </div>
             </div>
             <figure class="exhibit">
-              <img src="../media/02b-verdict-fill.gif" alt="Заполнение бланка вердикта: Ад, Чистилище или Рай, затем круг от 1 до 9" width="616" height="347" loading="lazy">
-              <figcaption>Улика Г. Бланк вердикта</figcaption>
+              <video src="../media/verdict-hand.mp4" poster="../media/verdict-hand.jpg" width="616" height="346" autoplay muted loop playsinline preload="metadata" aria-label="Бланк вердикта переворачивается на страницу печати, опускается штамп, и бланк передают душе"></video>
+              <figcaption>Улика Е. Печать и передача бланка душе</figcaption>
             </figure>
           </li>
         </ol>
@@ -355,10 +370,16 @@ footer.src p { font-size: 15px; color: var(--muted); max-width: 90ch; }
             <p>Канцелярия хранит следы тех, кто сидел за этим столом до вас. Между приёмами обыщите кабинет и узнайте, как вы оказались по эту сторону стола.</p>
             <p>В новом прохождении некоторые души говорят другую правду, и знакомое лицо не значит знакомый ответ. Ваш собственный путь ведёт к одной из двух концовок, в зависимости от того, как вы справлялись с работой.</p>
           </div>
-          <figure class="exhibit">
-            <img src="../media/04-eyes-dual.gif" alt="Двойное зрение: тёмный глаз видит зелёную дымку со скрытой точкой, светлый глаз видит символы и подпись о том, что внешний вид не совпадает с истинной природой" width="616" height="347" loading="lazy">
-            <figcaption>Улика Д. Два вида зрения</figcaption>
-          </figure>
+          <div class="exhibits">
+            <figure class="exhibit">
+              <video src="../media/corridor.mp4" poster="../media/corridor.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-label="Проход по высоким деревянным коридорам Канцелярии с папкой под мышкой"></video>
+              <figcaption>Улика Ж. Коридоры Канцелярии</figcaption>
+            </figure>
+            <figure class="exhibit">
+              <video src="../media/eyes-dual.mp4" poster="../media/eyes-dual.jpg" width="616" height="346" autoplay muted loop playsinline preload="metadata" aria-label="Двойное зрение: тёмный глаз видит зелёную дымку, светлый глаз видит символы и подпись"></video>
+              <figcaption>Улика З. Два вида зрения</figcaption>
+            </figure>
+            </div>
         </div>
       </div>
     </div>
